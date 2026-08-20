@@ -1,0 +1,124 @@
+Functional Requirements
+Homepage
+
+Engaging hero section with your startup’s mission.
+
+Clear call-to-action (e.g., “Join Now” or “Book a Free Demo”).
+
+Course Pages
+
+Separate sections for each offering:
+
+Spoken English
+
+Python Training
+
+DSA Training
+
+Hands-on Experience
+
+Real-world Projects
+
+Resume Building
+
+LinkedIn Optimization
+
+Each page should include: overview, benefits, syllabus highlights, duration, and pricing.
+
+Registration/Enrollment
+
+Online form for sign-ups.
+
+Payment gateway integration (Stripe, Razorpay, PayPal).
+
+Testimonials & Success Stories
+
+Showcase student feedback and career outcomes.
+
+Blog/Resources
+
+Articles, tips, and guides to build credibility.
+
+Contact Page
+
+Email, phone, and location details.
+
+Embedded contact form.
+
+Social Media Integration
+
+Links to LinkedIn, Instagram, YouTube, etc.
+
+
+
+
+
+
+
+
+
+
+design requirements
+Design Requirements
+Branding
+
+Consistent color palette and typography.
+
+Professional yet approachable design.
+
+Responsive Layout
+
+Mobile-first design for accessibility.
+
+Visuals
+
+Icons or illustrations for each course.
+
+High-quality images of training sessions or projects.
+
+
+
+Technical Requirements
+Platform
+
+Use WordPress, Wix, or custom HTML/CSS/JS with frameworks like React.
+
+Hosting
+
+Reliable hosting (e.g., Bluehost, Hostinger, AWS).
+
+SEO Optimization
+
+Keywords for “Spoken English classes,” “Python training,” “DSA training,” etc.
+
+Analytics
+
+Google Analytics integration to track visitors.
+
+Security
+
+SSL certificate.
+
+Secure payment processing.
+
+
+
+
+
+
+Marketing & Growth Requirements
+Lead Capture
+
+Pop-ups or banners for free demo classes.
+
+Email Integration
+
+Newsletter sign-up and automated follow-ups.
+
+LinkedIn Optimization
+
+Showcase how your training helps students improve LinkedIn profiles.
+
+Resume Building
+
+Highlight real-world project experience and career readiness.

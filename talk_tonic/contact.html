@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | TalkTonic</title>
+    <meta name="description" content="Contact TalkTonic to book a demo, discuss your startup growth goals, or build a custom strategy." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="sessions.html" class="brand" aria-label="TalkTonic home">
+          <span class="brand-mark">TT</span>
+          <span>TalkTonic</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="sessions.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-secondary">Book a demo</a>
+          <a href="contact.html" class="btn btn-primary">Get started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container page-title reveal">
+          <span class="section-tag">Contact</span>
+          <h1>Let’s build a smarter growth plan for your startup.</h1>
+          <p>Tell us about your vision, goals, and where you want your customer experience to improve.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-layout">
+          <aside class="contact-card reveal">
+            <h2>Talk to our team</h2>
+            <p>We’ll help you identify the right strategy, system, and next steps for your stage.</p>
+            <ul class="contact-list">
+              <li><strong>Email:</strong> hello@talktonic.com</li>
+              <li><strong>Phone:</strong> +1 (415) 204-2501</li>
+              <li><strong>Office:</strong> San Francisco, California</li>
+            </ul>
+          </aside>
+
+          <div class="contact-card reveal">
+            <form id="contactForm" class="form-grid">
+              <div class="field-row">
+                <input id="name" class="input-field" type="text" placeholder="Your name" />
+                <input id="email" class="input-field" type="email" placeholder="Email address" />
+              </div>
+
+              <input class="input-field" type="text" placeholder="Company / startup name" />
+              <textarea id="message" class="textarea-field" placeholder="Tell us about your goals and what you need help with..."></textarea>
+
+              <button type="submit" class="btn btn-primary">Send inquiry</button>
+              <div id="formStatus" class="form-status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark">TT</span>
+          <span>TalkTonic</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="sessions.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <span>© 2026 TalkTonic</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

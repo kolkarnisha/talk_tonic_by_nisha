@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalkTonic | Smart Startup Growth Platform</title>
+    <meta
+      name="description"
+      content="TalkTonic helps startups grow faster with smarter communication, automation, and customer engagement tools."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f7ff;
+        --primary: #4f46e5;
+        --primary-dark: #312e81;
+        --secondary: #06b6d4;
+        --text: #111827;
+        --muted: #6b7280;
+        --card: rgba(255, 255, 255, 0.8);
+        --white: #ffffff;
+        --shadow: 0 20px 50px rgba(79, 70, 229, 0.12);
+        --border: rgba(148, 163, 184, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(180deg, #f8faff 0%, #eef3ff 100%);
+        color: var(--text);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        backdrop-filter: blur(12px);
+        background: rgba(248, 250, 255, 0.75);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 80px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: grid;
+        place-items: center;
+        color: white;
+        font-size: 1.15rem;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 0.95rem 1.5rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: 0.25s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #6d5ef5);
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(79, 70, 229, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 40px rgba(79, 70, 229, 0.35);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(79, 70, 229, 0.25);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        padding: 80px 0 50px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 42px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(79, 70, 229, 0.18);
+        background: rgba(79, 70, 229, 0.06);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        display: block;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 5vw, 5rem);
+        line-height: 1.06;
+        margin: 20px 0 18px;
+        letter-spacing: -0.06em;
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, var(--primary), #7c3aed, var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 28px;
+        max-width: 620px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .customer-proof {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .avatars {
+        display: flex;
+        align-items: center;
+      }
+
+      .avatars img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--white);
+        margin-left: -10px;
+      }
+
+      .avatars img:first-child {
+        margin-left: 0;
+      }
+
+      .customer-proof span {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .image-card {
+        position: relative;
+        padding: 18px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        box-shadow: var(--shadow);
+      }
+
+      .image-card > img {
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+
+      .floating-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 18px 30px rgba(17, 24, 39, 0.08);
+        padding: 16px 18px;
+      }
+
+      .floating-card.top {
+        top: 28px;
+        left: -28px;
+      }
+
+      .floating-card.bottom {
+        right: -20px;
+        bottom: 26px;
+      }
+
+      .card-label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        margin-bottom: 6px;
+      }
+
+      .card-value {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+
+      .mini-chart {
+        display: flex;
+        align-items: end;
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .mini-chart span {
+        display: inline-block;
+        width: 12px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--secondary), var(--primary));
+      }
+
+      .mini-chart span:nth-child(1) { height: 18px; }
+      .mini-chart span:nth-child(2) { height: 26px; }
+      .mini-chart span:nth-child(3) { height: 36px; }
+      .mini-chart span:nth-child(4) { height: 52px; }
+      .mini-chart span:nth-child(5) { height: 66px; }
+
+      .stats-strip {
+        margin-top: 28px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 22px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        overflow: hidden;
+      }
+
+      .stat-box {
+        padding: 28px 20px;
+        text-align: center;
+      }
+
+      .stat-box + .stat-box {
+        border-left: 1px solid rgba(148, 163, 184, 0.18);
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: clamp(1.6rem, 2vw, 2.3rem);
+        margin-bottom: 8px;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-header {
+        max-width: 620px;
+        margin: 0 auto 44px;
+        text-align: center;
+      }
+
+      .section-header .tag {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(79, 70, 229, 0.06);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2rem, 3vw, 3.1rem);
+        letter-spacing: -0.05em;
+        margin: 0 0 14px;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.8;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 26px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      }
+
+      .icon-box {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(6, 182, 212, 0.18));
+      }
+
+      .feature-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.38rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .showcase {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .showcase-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .showcase-card img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+      }
+
+      .showcase-copy {
+        padding: 18px 8px 8px;
+      }
+
+      .check-list {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 0;
+        display: grid;
+        gap: 16px;
+      }
+
+      .check-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .check-list li::before {
+        content: "✓";
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: inline-grid;
+        place-items: center;
+        color: var(--white);
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .testimonial {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 24px;
+        padding: 28px 24px;
+      }
+
+      .stars {
+        color: #fbbf24;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+      }
+
+      .testimonial p {
+        color: var(--muted);
+        line-height: 1.8;
+        margin: 0 0 22px;
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .person img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .person strong {
+        display: block;
+      }
+
+      .person span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .price-card {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 26px;
+        padding: 30px 24px;
+        position: relative;
+      }
+
+      .price-card.featured {
+        border-color: rgba(79, 70, 229, 0.32);
+        box-shadow: var(--shadow);
+        transform: translateY(-10px);
+      }
+
+      .badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        font-size: 0.72rem;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 7px 10px;
+      }
+
+      .price-card h3 {
+        margin: 0 0 8px;
+      }
+
+      .price {
+        margin: 18px 0 20px;
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+      }
+
+      .price small {
+        font-size: 1rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .price-card p {
+        color: var(--muted);
+        margin: 0 0 22px;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 26px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+      }
+
+      .feature-list li::before {
+        content: "✓";
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--primary);
+        display: inline-grid;
+        place-items: center;
+        font-weight: 700;
+      }
+
+      .cta {
+        padding: 28px;
+        background: linear-gradient(135deg, #0f172a, #1e1b4b 50%, #312e81);
+        border-radius: 30px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .cta h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+        letter-spacing: -0.04em;
+      }
+
+      .cta p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      footer {
+        padding: 30px 0 60px;
+      }
+
+      .footer-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        color: var(--muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero-wrap,
+        .showcase,
+        .feature-grid,
+        .testimonial-grid,
+        .pricing,
+        .stats-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          min-height: 72px;
+        }
+
+        .nav-actions .btn-secondary {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 52px;
+        }
+
+        .image-card > img {
+          height: 420px;
+        }
+
+        .floating-card.top {
+          left: 12px;
+        }
+
+        .floating-card.bottom {
+          right: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="TalkTonic home">
+          <span class="brand-mark">T</span>
+          <span>TalkTonic</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-secondary">Log in</a>
+          <a href="#contact" class="btn btn-primary">Get started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <div class="eyebrow">Built for modern startups</div>
+            <h1>
+              Turn bold ideas into<br />
+              <span class="highlight">customer growth</span>
+            </h1>
+            <p>
+              TalkTonic helps startup teams automate conversations, uncover insights,
+              and convert attention into loyal customers with a platform designed to move fast.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Start free trial</a>
+              <a href="#features" class="btn btn-secondary">See how it works</a>
+            </div>
+
+            <div class="customer-proof">
+              <div class="avatars" aria-label="Customer avatars">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Customer 1" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Customer 2" />
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Customer 3" />
+              </div>
+              <span>Trusted by 3,000+ startups worldwide</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Product illustration">
+            <div class="image-card">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Startup team collaborating"
+              />
+            </div>
+
+            <div class="floating-card top">
+              <div class="card-label">Revenue lift</div>
+              <div class="card-value">+48%</div>
+              <div class="mini-chart" aria-label="Revenue chart">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="floating-card bottom">
+              <div class="card-label">Campaign reach</div>
+              <div class="card-value">1.2M</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="stats-strip">
+            <div class="stat-box">
+              <strong>25k+</strong>
+              <span>Customer conversations</span>
+            </div>
+            <div class="stat-box">
+              <strong>4.9/5</strong>
+              <span>User satisfaction</span>
+            </div>
+            <div class="stat-box">
+              <strong>3x</strong>
+              <span>Faster response time</span>
+            </div>
+            <div class="stat-box">
+              <strong>92%</strong>
+              <span>Team productivity boost</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-header">
+            <span class="tag">Why teams choose us</span>
+            <h2>Everything your startup needs to scale smarter</h2>
+            <p>
+              From sales and onboarding to support and retention, TalkTonic gives your team a
+              unified system for growth and customer delight.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="icon-box">⚡</div>
+              <h3>Automated workflows</h3>
+              <p>
+                Launch conversational flows, reminders, and follow-ups automatically to keep momentum
+                going without extra manual work.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">📊</div>
+              <h3>Live analytics</h3>
+              <p>
+                Track campaign performance, customer journeys, and engagement trends in one simple
+                dashboard built for action.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">🤝</div>
+              <h3>Built for collaboration</h3>
+              <p>
+                Keep marketing, sales, and support aligned with shared visibility across every touchpoint.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solutions">
+        <div class="container showcase">
+          <div class="showcase-card">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="Team meeting"
+            />
+          </div>
+
+          <div class="showcase-copy">
+            <span class="tag">Built to grow with you</span>
+            <h2>Simple systems. Powerful outcomes.</h2>
+            <p>
+              Start with a focused toolkit and expand as your startup evolves—without needing a huge
+              operations team or a complex stack.
+            </p>
+
+            <ul class="check-list">
+              <li>Unified customer data and engagement tracking</li>
+              <li>Fast setup with templates designed for early-stage teams</li>
+              <li>AI-assisted insights for smarter conversations and better conversion</li>
+              <li>Scalable workflows for product, sales, and support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <span class="tag">Customer love</span>
+            <h2>Startups that moved faster with TalkTonic</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “We launched our onboarding journey in under a week and saw immediate improvement in
+                engagement and conversion. The product is clear, fast, and impactful.”
+              </p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Ava Reed" />
+                <div>
+                  <strong>Ava Reed</strong>
+                  <span>COO, Northstar Labs</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “TalkTonic helped us turn scattered communication into a repeatable growth engine. Our
+                sales team is more focused and our response times are dramatically better.”
+              </p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="Leo Martin" />
+                <div>
+                  <strong>Leo Martin</strong>
+                  <span>Founder, Brightlane</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The interface is simple for our team, but the data and automation power behind it are
+                exceptional. It feels premium and it performs like a scaled enterprise system.”
+              </p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80" alt="Nina Shah" />
+                <div>
+                  <strong>Nina Shah</strong>
+                  <span>VP Growth, Oak & Co.</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-header">
+            <span class="tag">Simple pricing</span>
+            <h2>Choose a plan that fits your stage</h2>
+          </div>
+
+          <div class="pricing">
+            <article class="price-card">
+              <h3>Starter</h3>
+              <div class="price">$29 <small>/month</small></div>
+              <p>Perfect for early-stage teams launching their first growth loops.</p>
+              <ul class="feature-list">
+                <li>Unlimited contacts</li>
+                <li>3 active workflows</li>
+                <li>Basic analytics</li>
+                <li>Email support</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Try Starter</a>
+            </article>
+
+            <article class="price-card featured">
+              <div class="badge">Most popular</div>
+              <h3>Growth</h3>
+              <div class="price">$79 <small>/month</small></div>
+              <p>Built for startups ready to scale customer engagement across teams.</p>
+              <ul class="feature-list">
+                <li>Everything in Starter</li>
+                <li>Unlimited workflows</li>
+                <li>Advanced reporting</li>
+                <li>Priority chat support</li>
+              </ul>
+              <a href="#contact" class="btn btn-primary">Get Growth</a>
+            </article>
+
+            <article class="price-card">
+              <h3>Scale</h3>
+              <div class="price">Custom</div>
+              <p>For larger teams with advanced integrations and custom support needs.</p>
+              <ul class="feature-list">
+                <li>Custom onboarding</li>
+                <li>Multi-team workspaces</li>
+                <li>API access</li>
+                <li>Dedicated success manager</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Talk to sales</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <h3>Ready to grow your startup faster?</h3>
+              <p>See how TalkTonic can help you turn conversations into measurable results.</p>
+            </div>
+            <a href="mailto:hello@talktonic.com" class="btn btn-primary">Book a demo</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div class="brand">
+          <span class="brand-mark">T</span>
+          <span>TalkTonic</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <span>© 2026 TalkTonic. All rights reserved.</span>
+      </div>
+    </footer>
+  </body>
+</html>
