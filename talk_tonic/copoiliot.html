@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copoiliot | TalkTonic</title>
+    <meta
+      name="description"
+      content="Copoiliot brings strategy, automation, and insight together for modern startup teams."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f7ff;
+        --primary: #4f46e5;
+        --primary-dark: #312e81;
+        --secondary: #06b6d4;
+        --text: #111827;
+        --muted: #6b7280;
+        --white: #ffffff;
+        --shadow: 0 20px 50px rgba(79, 70, 229, 0.12);
+        --border: rgba(148, 163, 184, 0.2);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, #f8faff 0%, #eef3ff 100%);
+      }
+
+      a { text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background: rgba(248, 250, 255, 0.75);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 80px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: grid;
+        place-items: center;
+        color: white;
+        font-size: 1.15rem;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .nav-links a:hover { color: var(--primary); }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 0.95rem 1.5rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: 0.25s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #6d5ef5);
+        color: var(--white);
+        box-shadow: 0 18px 35px rgba(79, 70, 229, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 40px rgba(79, 70, 229, 0.35);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(79, 70, 229, 0.25);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        padding: 84px 0 52px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 42px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(79, 70, 229, 0.18);
+        background: rgba(79, 70, 229, 0.06);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        display: block;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 5vw, 5rem);
+        line-height: 1.06;
+        margin: 20px 0 18px;
+        letter-spacing: -0.06em;
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, var(--primary), #7c3aed, var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+        margin-bottom: 28px;
+        max-width: 610px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .stat-box {
+        padding: 20px 18px;
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 20px;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .image-card {
+        position: relative;
+        padding: 18px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        box-shadow: var(--shadow);
+      }
+
+      .image-card img {
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+
+      .floating-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 18px 30px rgba(17, 24, 39, 0.08);
+        padding: 16px 18px;
+      }
+
+      .floating-card.top { top: 28px; left: -28px; }
+      .floating-card.bottom { right: -20px; bottom: 26px; }
+
+      .card-label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        margin-bottom: 6px;
+      }
+
+      .card-value {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-header {
+        max-width: 650px;
+        margin: 0 auto 44px;
+        text-align: center;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(79, 70, 229, 0.06);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2rem, 3vw, 3.1rem);
+        letter-spacing: -0.05em;
+        margin: 0 0 14px;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.8;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 26px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      }
+
+      .icon-box {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(6, 182, 212, 0.18));
+      }
+
+      .feature-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.38rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .showcase {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .showcase-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .showcase-card img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+      }
+
+      .check-list {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 0;
+        display: grid;
+        gap: 16px;
+      }
+
+      .check-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .check-list li::before {
+        content: "✓";
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: inline-grid;
+        place-items: center;
+        color: var(--white);
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+
+      .cta {
+        padding: 28px;
+        background: linear-gradient(135deg, #0f172a, #1e1b4b 50%, #312e81);
+        border-radius: 30px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .cta h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+        letter-spacing: -0.04em;
+      }
+
+      .cta p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      footer {
+        padding: 30px 0 60px;
+      }
+
+      .footer-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        color: var(--muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero-wrap,
+        .showcase,
+        .feature-grid,
+        .stats-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links { display: none; }
+        .cta { flex-direction: column; align-items: flex-start; }
+      }
+
+      @media (max-width: 640px) {
+        .nav { min-height: 72px; }
+        .nav-actions .btn-secondary { display: none; }
+        .image-card img { height: 420px; }
+        .floating-card.top { left: 12px; }
+        .floating-card.bottom { right: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="sessions.html" class="brand" aria-label="TalkTonic home">
+          <span class="brand-mark">T</span>
+          <span>TalkTonic</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="sessions.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="copoiliot.html">Copoiliot</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-secondary">Book a demo</a>
+          <a href="contact.html" class="btn btn-primary">Get started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <div class="eyebrow">Built for growth teams</div>
+            <h1>
+              Meet <span class="highlight">Copoiliot</span><br />
+              the smarter system behind traction
+            </h1>
+            <p>
+              Copoiliot helps founders and teams connect insight, automation, and customer engagement in
+              one focused workflow so every action supports faster growth.
+            </p>
+
+            <div class="hero-actions">
+              <a href="contact.html" class="btn btn-primary">Schedule a strategy call</a>
+              <a href="sessions.html" class="btn btn-secondary">Back to home</a>
+            </div>
+
+            <div class="stats-strip">
+              <div class="stat-box">
+                <strong>3.2x</strong>
+                <span>Faster campaign launch</span>
+              </div>
+              <div class="stat-box">
+                <strong>41%</strong>
+                <span>Higher engagement</span>
+              </div>
+              <div class="stat-box">
+                <strong>24/7</strong>
+                <span>Always-on visibility</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Copoiliot product illustration">
+            <div class="image-card">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Startup team reviewing strategy"
+              />
+            </div>
+
+            <div class="floating-card top">
+              <div class="card-label">Workflow efficiency</div>
+              <div class="card-value">+68%</div>
+            </div>
+
+            <div class="floating-card bottom">
+              <div class="card-label">Qualified leads</div>
+              <div class="card-value">12.4k</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="tag">Why Copoiliot matters</span>
+            <h2>Convert insight into action without the operational drag</h2>
+            <p>
+              Your team needs a system that turns conversations, campaigns, and customer feedback into a
+              clear growth engine. Copoiliot helps you align strategy and execution in one place.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="icon-box">⚙️</div>
+              <h3>Workflow automation</h3>
+              <p>
+                Trigger the right actions automatically across onboarding, follow-up, retention, and sales
+                sequences without manual effort.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">📈</div>
+              <h3>Signal-based insight</h3>
+              <p>
+                Turn customer activity into direct action cues so your team can prioritize the moments that
+                matter most.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="icon-box">🧠</div>
+              <h3>Smarter decision support</h3>
+              <p>
+                Stay in sync with dashboards, predictive prompts, and performance tracking designed for growth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container showcase">
+          <div class="showcase-card">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="Team collaborating on strategic planning"
+            />
+          </div>
+
+          <div>
+            <span class="tag">Built for momentum</span>
+            <h2>Give your team a system that moves as fast as your ideas.</h2>
+            <ul class="check-list">
+              <li>Unified customer journey visibility from first touch to retention</li>
+              <li>Automated actions to reduce response delays and improve execution</li>
+              <li>Shared workspace for leadership, marketing, product, and support</li>
+              <li>Clear reporting so every campaign leads to a better next decision</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <h3>Ready to turn momentum into measurable growth?</h3>
+              <p>Use Copoiliot to streamline your strategy, automate the busy work, and keep traction moving.</p>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Book a demo</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div class="brand">
+          <span class="brand-mark">T</span>
+          <span>TalkTonic</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="sessions.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="copoiliot.html">Copoiliot</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <span>© 2026 TalkTonic. All rights reserved.</span>
+      </div>
+    </footer>
+  </body>
+</html>
