@@ -3,6 +3,7 @@ from flask import Flask, request, redirect, url_for, render_template_string, jso
 import sqlite3
 import os
 from datetime import datetime
+from talk_tonic.spoken_english.english import spoken_english
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "talktonic.db")
 
@@ -69,17 +70,18 @@ def init_db():
     conn.close()
 
 app = Flask(__name__)
+app.register_blueprint(spoken_english)
 init_db()
 
 BASE_HTML = """
 <!doctype html>
 <title>TalkTonic</title>
 <style>
- body{{font-family:Segoe UI, Roboto, Arial; margin: 0; padding: 0;}}
- .hero{{background:#0b76ef;color:white;padding:40px;text-align:center}}
- .container{{padding:20px;max-width:900px;margin:0 auto}}
- .card{{border:1px solid #eee;padding:16px;margin:10px 0;border-radius:6px}}
- .cta{{display:inline-block;padding:10px 16px;background:#ff7a59;color:white;border-radius:4px;text-decoration:none}}
+ body{font-family:Segoe UI, Roboto, Arial; margin: 0; padding: 0;}
+ .hero{background:#0b76ef;color:white;padding:40px;text-align:center}
+ .container{padding:20px;max-width:900px;margin:0 auto}
+ .card{border:1px solid #eee;padding:16px;margin:10px 0;border-radius:6px}
+ .cta{display:inline-block;padding:10px 16px;background:#ff7a59;color:white;border-radius:4px;text-decoration:none}
 </style>
 <div class="hero">
   <h1>TalkTonic — Learn. Build. Grow.</h1>
@@ -166,6 +168,19 @@ def register():
     </form>
     """
     return render_template_string(BASE_HTML, courses=COURSES, course_pref=course_pref, body=body)
+
+@app.route("/login")
+def login():
+    reason = request.args.get("reason")
+    message = "Your assessment shows that guided practice will help you progress faster."
+    if reason == "admission":
+        message = "Nisha recommends joining Nisha Talk Tonic Institute. Start your admission below."
+    body = f"<h2>Student Login</h2><p>{message}</p><p>New to TalkTonic? Use the registration form to begin your admission.</p><a class=\"cta\" href=\"{url_for('register', course='spoken-english')}\">Start admission</a>"
+    return render_template_string(BASE_HTML, body=body)
+
+@app.route("/admissions")
+def admissions():
+    return redirect(url_for("register", course="spoken-english", score=request.args.get("score", "")))
 
 @app.route("/payment")
 def payment():

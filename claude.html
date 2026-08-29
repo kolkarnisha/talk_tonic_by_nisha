@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nisha's Spoken English Assessment</title>
+  <style>
+    :root { --ink:#17221d; --paper:#f7f4eb; --green:#174c3a; --mint:#d8ead8; --orange:#d8783d; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Georgia, serif; }
+    main { width:min(760px, calc(100% - 32px)); margin:48px auto; } h1 { font-size:clamp(2.1rem, 6vw, 4.5rem); line-height:.95; margin:0 0 16px; color:var(--green); }
+    .intro { font:1.05rem/1.6 Arial, sans-serif; max-width:600px; } .panel { background:white; border:1px solid #d8dfd3; padding:28px; margin-top:28px; box-shadow:8px 8px 0 var(--mint); }
+    label, legend { font:bold 1rem Arial, sans-serif; } fieldset { border:0; padding:0; margin:0; } .paths { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+    .paths label { border:1px solid #abc4b0; padding:12px 16px; cursor:pointer; } .paths input { accent-color:var(--green); }
+    button, .button { border:0; background:var(--green); color:white; padding:14px 20px; font:bold 1rem Arial, sans-serif; cursor:pointer; margin-top:20px; text-decoration:none; display:inline-block; }
+    button.secondary { background:var(--orange); } button:disabled { background:#9fae a6; opacity:.6; cursor:not-allowed; }
+    [hidden] { display:none !important; } .progress { font:.9rem Arial, sans-serif; color:#53645b; margin-bottom:22px; }
+    .question { font-size:1.45rem; line-height:1.25; } .questionMeta { font:italic .9rem Arial, sans-serif; color:#53645b; margin-top:6px; }
+    .options { display:grid; gap:10px; margin-top:18px; } .options label { font:1rem Arial, sans-serif; border:1px solid #d8dfd3; padding:14px; cursor:pointer; display:block; }
+    .options label:has(input:checked) { border-color:var(--green); background:var(--mint); }
+    textarea { width:100%; min-height:120px; margin-top:16px; padding:12px; font:1rem Arial, sans-serif; border:1px solid #abc4b0; } .voice { display:flex; gap:10px; flex-wrap:wrap; align-items:center; font:.9rem Arial, sans-serif; }
+    .voice button { margin-top:14px; } .result-score { font-size:4rem; color:var(--green); margin:8px 0; } .error { color:#a22d21; font:1rem Arial, sans-serif; }
+    .breakdown { list-style:none; padding:0; margin:20px 0 0; font:.95rem/1.5 Arial, sans-serif; } .breakdown li { padding:10px 0; border-top:1px solid #eae5d6; }
+    .breakdown .qtext { color:var(--ink); } .breakdown .qscore { color:var(--green); font-weight:bold; } .breakdown .qfeedback { color:#53645b; margin-top:2px; }
+    .loading { font:1rem Arial, sans-serif; color:#53645b; }
+  </style>
+</head>
+<body><main>
+  <section id="start" class="panel"><h1>Speak with Nisha.</h1><p class="intro">Choose your learning path. You will answer grammar questions and speak directly with Nisha's voice assistant. At the end, Nisha compares your answers with model answers and scores your English.</p>
+    <fieldset><legend>Choose assessment paths</legend><div class="paths"><label><input type="checkbox" value="grammar" checked> Grammar</label><label><input type="checkbox" value="speaking" checked> Speaking</label></div></fieldset>
+    <button id="begin">Begin assessment</button><p id="startError" class="error" aria-live="polite"></p>
+  </section>
+  <section id="assessment" class="panel" hidden><div id="progress" class="progress"></div><div id="question" class="question"></div><div id="questionMeta" class="questionMeta"></div><div id="answerArea"></div><div class="voice"><button id="listen" class="secondary" type="button">Hear Nisha</button><span id="voiceStatus">Voice answers are optional; typing is always available.</span></div><button id="next" type="button">Save answer and continue</button></section>
+  <section id="grading" class="panel" hidden><p class="loading" id="gradingText">Nisha is comparing your answers with the model answers...</p></section>
+  <section id="results" class="panel" hidden><h2>Your assessment result</h2><div id="score" class="result-score"></div><p id="recommendation" class="intro"></p><ul id="breakdown" class="breakdown"></ul><p id="redirectNotice" class="intro" hidden></p><a id="admission" class="button" href="#">Continue to admission</a></section>
+</main>
+<script>
+/* ---------- Config ---------- */
+// TODO: replace with Talktonic's real admissions URL for the spoken-english course.
+const ADMISSIONS_URL = 'https://www.talktonic.com/admissions';
+
+/* ---------- Question bank (client-side, no backend required) ---------- */
+const QUESTION_BANK = [
+  { id:'g1', path:'grammar', type:'choice', prompt:'Choose the correct sentence.',
+    options:['She don\'t like coffee.', 'She doesn\'t likes coffee.', 'She doesn\'t like coffee.', 'She not like coffee.'], correct:2 },
+  { id:'g2', path:'grammar', type:'choice', prompt:'Fill in the blank: "I ___ to the market yesterday."',
+    options:['go', 'goes', 'went', 'going'], correct:2 },
+  { id:'g3', path:'grammar', type:'choice', prompt:'Which sentence uses the correct preposition?',
+    options:['I am good in English.', 'I am good at English.', 'I am good on English.', 'I am good for English.'], correct:1 },
+  { id:'g4', path:'grammar', type:'choice', prompt:'Choose the correctly punctuated sentence.',
+    options:['Whats your name', 'What\'s your name?', 'Whats your name?', 'What is your name'], correct:1 },
+  { id:'s1', path:'speaking', type:'describe', prompt:'Introduce yourself in two or three sentences: your name, where you are from, and what you do.',
+    idealAnswer:'A clear self-introduction stating name, hometown/city, and current occupation or studies, in grammatically correct, complete sentences.' },
+  { id:'s2', path:'speaking', type:'describe', prompt:'Describe your typical morning routine.',
+    idealAnswer:'A sequence of everyday morning activities (waking up, getting ready, eating breakfast, commuting) described using simple present tense with logical order and connecting words like "then" or "after that".' },
+  { id:'s3', path:'speaking', type:'describe', prompt:'What is your favorite place to visit, and why do you like it?',
+    idealAnswer:'Names a specific place and gives at least one clear reason, using descriptive language and correct grammar to explain the preference.' },
+  { id:'s4', path:'speaking', type:'describe', prompt:'Describe a challenge you faced recently and how you dealt with it.',
+    idealAnswer:'Describes a specific situation, the difficulty involved, and the action taken to resolve it, using past tense consistently and clear cause-effect structure.' }
+];
+
+/* ---------- State ---------- */
+const start = document.getElementById('start'), assessment = document.getElementById('assessment'),
+      grading = document.getElementById('grading'), results = document.getElementById('results');
+let questions = [], selectedPaths = [], current = 0, answers = {};
+
+const speak = text => { if ('speechSynthesis' in window) { speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(text)); } };
+
+function renderQuestion() {
+  const item = questions[current];
+  document.getElementById('progress').textContent = `Question ${current + 1} of ${questions.length} · ${item.path}`;
+  document.getElementById('question').textContent = item.prompt;
+  document.getElementById('questionMeta').textContent = item.type === 'choice' ? 'Select one option.' : 'Speak or type your answer.';
+  const area = document.getElementById('answerArea'); area.innerHTML = '';
+  if (item.type === 'choice') {
+    const options = document.createElement('div'); options.className = 'options';
+    item.options.forEach((option, index) => {
+      const savedIndex = answers[item.id];
+      const checked = savedIndex === index ? 'checked' : '';
+      options.innerHTML += `<label><input type="radio" name="answer" value="${index}" ${checked}> ${option}</label>`;
+    });
+    area.append(options);
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.id = 'spokenAnswer';
+    textarea.placeholder = 'Type your answer, or use the microphone...';
+    textarea.value = answers[item.id] || '';
+    area.append(textarea);
+  }
+  document.getElementById('voiceStatus').textContent = 'Voice answers are optional; typing is always available.';
+  speak(item.prompt);
+}
+
+document.getElementById('begin').onclick = () => {
+  selectedPaths = [...document.querySelectorAll('.paths input:checked')].map(input => input.value);
+  if (!selectedPaths.length) { document.getElementById('startError').textContent = 'Choose at least one path.'; return; }
+  document.getElementById('startError').textContent = '';
+  questions = QUESTION_BANK.filter(item => selectedPaths.includes(item.path));
+  current = 0; answers = {};
+  start.hidden = true; assessment.hidden = false;
+  renderQuestion();
+};
+
+document.getElementById('listen').onclick = () => speak(questions[current].prompt);
+
+document.getElementById('next').onclick = async () => {
+  const item = questions[current], choice = document.querySelector('input[name="answer"]:checked');
+  answers[item.id] = item.type === 'choice' ? (choice ? Number(choice.value) : null) : document.getElementById('spokenAnswer').value.trim();
+  if (current < questions.length - 1) { current++; renderQuestion(); return; }
+  assessment.hidden = true; grading.hidden = false;
+  await scoreAssessment();
+};
+
+/* ---------- Scoring ---------- */
+async function scoreAssessment() {
+  const grammarItems = questions.filter(q => q.type === 'choice');
+  const speakingItems = questions.filter(q => q.type === 'describe');
+
+  const grammarResults = grammarItems.map(q => {
+    const givenIndex = answers[q.id];
+    const correct = givenIndex === q.correct;
+    return {
+      id: q.id, prompt: q.prompt, score: correct ? 100 : 0,
+      yourAnswer: givenIndex === null || givenIndex === undefined ? '(no answer given)' : q.options[givenIndex],
+      correctAnswer: q.options[q.correct],
+      feedback: correct ? 'Correct.' : 'Incorrect.'
+    };
+  });
+
+  let speakingResults = [];
+  if (speakingItems.length) {
+    document.getElementById('gradingText').textContent = 'Nisha is comparing your spoken answers with the model answers...';
+    speakingResults = await gradeSpeakingAnswers(speakingItems);
+  }
+
+  const allResults = [...grammarResults, ...speakingResults];
+  const overall = Math.round(allResults.reduce((sum, r) => sum + r.score, 0) / allResults.length);
+
+  grading.hidden = true;
+  results.hidden = false;
+
+  document.getElementById('score').textContent = `${overall}%`;
+
+  const recommendation = `You scored ${overall}/100 on this assessment. With this level of English, it can be hard to survive in cities, to hold your own in the job market, and to crack interviews. Improve your skills by taking admission in Talktonic — it will help you build the English skills to improve your life achievements.`;
+  document.getElementById('recommendation').textContent = recommendation;
+
+  const breakdown = document.getElementById('breakdown');
+  breakdown.innerHTML = '';
+  allResults.forEach(r => {
+    const li = document.createElement('li');
+    li.innerHTML = `<div class="qtext">${r.prompt}</div>
+      <div class="qscore">${r.score}/100</div>
+      <div class="qfeedback"><strong>Your answer:</strong> ${r.yourAnswer}</div>
+      <div class="qfeedback"><strong>Correct answer:</strong> ${r.correctAnswer}</div>
+      <div class="qfeedback">${r.feedback || ''}</div>`;
+    breakdown.append(li);
+  });
+
+  const admissionButton = document.getElementById('admission');
+  const redirectNotice = document.getElementById('redirectNotice');
+  const url = `${ADMISSIONS_URL}?course=spoken-english&score=${overall}`;
+
+  admissionButton.href = url;
+  admissionButton.style.display = 'inline-block';
+  admissionButton.textContent = 'Continue to admission now';
+  redirectNotice.hidden = false;
+  speak(recommendation);
+
+  let secondsLeft = 10;
+  redirectNotice.textContent = `Taking you to Talktonic admissions in ${secondsLeft}s...`;
+  const countdown = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(countdown);
+      window.location.assign(url);
+      return;
+    }
+    redirectNotice.textContent = `Taking you to Talktonic admissions in ${secondsLeft}s...`;
+  }, 1000);
+}
+
+async function gradeSpeakingAnswers(items) {
+  const payload = items.map(q => ({
+    id: q.id,
+    question: q.prompt,
+    idealAnswerGuidance: q.idealAnswer,
+    studentAnswer: (answers[q.id] || '').trim() || '(no answer given)'
+  }));
+
+  const systemPrompt = `You are an English-speaking assessment grader. For each question, compare the student's answer against the guidance for an ideal answer. Score each answer from 0 to 100 based on: relevance to the question, grammatical correctness, and clarity/coherence. An empty or irrelevant answer should score near 0. Respond with ONLY valid JSON, no preamble, no markdown fences, in this exact shape:
+{"results":[{"id":"<question id>","score":<integer 0-100>,"feedback":"<one short sentence of feedback>"}]}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: JSON.stringify(payload) }]
+      })
+    });
+    if (!response.ok) throw new Error('API request failed');
+    const data = await response.json();
+    const text = data.content.map(block => block.text || '').join('').replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(text);
+    return parsed.results.map(r => {
+      const q = items.find(item => item.id === r.id);
+      return {
+        id: r.id, prompt: q ? q.prompt : r.id,
+        score: Math.max(0, Math.min(100, Number(r.score) || 0)),
+        yourAnswer: (answers[r.id] || '').trim() || '(no answer given)',
+        correctAnswer: q ? q.idealAnswer : '',
+        feedback: r.feedback || ''
+      };
+    });
+  } catch (err) {
+    // Fallback: simple local word-overlap scoring if the AI grader is unavailable.
+    return items.map(q => {
+      const studentAnswer = (answers[q.id] || '').toLowerCase();
+      const idealWords = new Set(q.idealAnswer.toLowerCase().match(/[a-z]+/g) || []);
+      const studentWords = new Set(studentAnswer.match(/[a-z]+/g) || []);
+      const overlap = [...studentWords].filter(w => idealWords.has(w)).length;
+      const score = studentWords.size === 0 ? 0 : Math.min(100, Math.round((overlap / idealWords.size) * 150));
+      return {
+        id: q.id, prompt: q.prompt, score,
+        yourAnswer: (answers[q.id] || '').trim() || '(no answer given)',
+        correctAnswer: q.idealAnswer,
+        feedback: 'Scored locally (AI grading unavailable).'
+      };
+    });
+  }
+}
+
+/* ---------- Voice recognition ---------- */
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new Recognition();
+  recognition.lang = 'en-US';
+  recognition.onstart = () => document.getElementById('voiceStatus').textContent = 'Listening...';
+  recognition.onresult = event => {
+    const field = document.getElementById('spokenAnswer');
+    if (field) field.value = event.results[0][0].transcript;
+    document.getElementById('voiceStatus').textContent = 'Answer captured.';
+  };
+  recognition.onerror = () => document.getElementById('voiceStatus').textContent = 'Microphone unavailable. Type your answer instead.';
+  document.getElementById('listen').onclick = () => {
+    speak(questions[current].prompt);
+    if (questions[current].type === 'describe') recognition.start();
+  };
+}
+</script></body></html>
