@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nisha English Lab — Spoken English Assessment</title>
+<meta name="description" content="Take Nisha's spoken English and grammar assessment and receive a personalized English score.">
+<style>
+:root{--ink:#13231c;--paper:#f4f7f3;--green:#124d3b;--green2:#1d6a51;--mint:#dff1e7;--orange:#d8783d;--white:#fff;--line:#d9e5de;--muted:#617168;--shadow:0 24px 70px rgba(18,77,59,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 8% 0%,#e5f3e9,transparent 38%),radial-gradient(circle at 100% 5%,#f9e7da,transparent 32%),var(--paper);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(rgba(18,77,59,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(18,77,59,.025) 1px,transparent 1px);background-size:32px 32px}
+main{width:min(900px,calc(100% - 24px));margin:28px auto 70px;position:relative}.brand{display:flex;justify-content:space-between;align-items:center;margin:0 2px 20px;font-weight:850;letter-spacing:.04em}.brandmark{display:flex;align-items:center;gap:8px;color:var(--green)}.dot{width:10px;height:10px;border-radius:50%;background:var(--orange)}.badge{padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:#ffffffb8;color:var(--muted);font-size:.76rem;letter-spacing:.02em}
+.panel{background:#fffffff2;border:1px solid var(--line);border-radius:26px;padding:34px;box-shadow:var(--shadow);backdrop-filter:blur(8px);margin-top:20px}.hero{padding:14px 0 8px}.eyebrow{color:var(--orange);text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:900;margin-bottom:13px}h1,h2{font-family:Georgia,serif;color:var(--green);letter-spacing:-.045em}h1{font-size:clamp(2.8rem,8vw,6rem);line-height:.88;margin:0 0 20px}h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:0 0 18px}.intro{font-size:1.04rem;line-height:1.72;color:#43554c;max-width:720px}
+fieldset{border:0;padding:0;margin:28px 0 0}legend{font-weight:850}.paths{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:13px}.paths label{padding:18px;border:1px solid #c7d9ce;border-radius:16px;background:#fbfdfb;cursor:pointer;transition:.2s}.paths label:hover{transform:translateY(-2px);border-color:var(--green2)}input{accent-color:var(--green)}
+button,.button{border:0;border-radius:13px;background:var(--green);color:white;padding:14px 20px;font-weight:850;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}button:hover,.button:hover{background:var(--green2);transform:translateY(-2px)}button.secondary{background:var(--orange)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}.startbtn{margin-top:22px}.error{color:#a22d21;min-height:1.3em}.fineprint{font-size:.78rem;color:var(--muted)}
+[hidden]{display:none!important}.topline{display:flex;justify-content:space-between;align-items:center;gap:10px}.progress{font-size:.86rem;font-weight:800;color:var(--muted)}.progressbar{height:8px;background:#e6eee9;border-radius:99px;overflow:hidden;margin:15px 0 30px}.progressfill{height:100%;width:0;background:var(--green);transition:width .35s}.question{font:clamp(1.5rem,4vw,2.05rem)/1.25 Georgia,serif;color:var(--green)}.questionMeta{color:var(--muted);font-size:.9rem;margin-top:7px}.options{display:grid;gap:11px;margin-top:20px}.options label{display:block;padding:17px;border:1px solid var(--line);border-radius:15px;background:#fff;cursor:pointer;transition:.18s}.options label:hover{border-color:#a9c5b5}.options label:has(input:checked){background:var(--mint);border-color:var(--green);box-shadow:0 0 0 2px #124d3b0d}textarea{width:100%;min-height:150px;margin-top:18px;padding:15px;border:1px solid #bfd3c6;border-radius:15px;resize:vertical;font:1rem/1.55 Arial,sans-serif;outline:none}textarea:focus{border-color:var(--green);box-shadow:0 0 0 4px #124d3b12}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.voice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.88rem}.voice button{margin-top:16px}.loading{text-align:center;color:var(--muted);line-height:1.6}.spinner{width:32px;height:32px;border:3px solid #dbe8df;border-top-color:var(--green);border-radius:50%;margin:5px auto 16px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.scorecard{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;background:var(--mint);border-radius:20px;padding:24px}.score{font:clamp(4rem,14vw,7rem)/1 Georgia,serif;color:var(--green)}.scorelabel{font-weight:850;color:var(--green)}.level{display:inline-block;margin-top:9px;padding:8px 12px;border-radius:999px;background:#fff;color:var(--green);font-weight:850}.breakdown{list-style:none;padding:0;margin:26px 0 0}.breakdown li{padding:17px 0;border-top:1px solid #e3ebe6;line-height:1.5}.qtext{font-weight:800}.qscore{color:var(--green);font-weight:900;margin:4px 0}.qfeedback{color:var(--muted);margin-top:3px}.resultActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.resultActions .secondary{border:0}.status{min-height:1.4em}.empty{padding:16px;border-radius:14px;background:#f6f8f6;color:var(--muted)}
+@media(max-width:650px){main{width:calc(100% - 16px);margin-top:15px}.brand{font-size:.82rem}.brand .badge{display:none}.panel{padding:22px;border-radius:20px}.paths,.scorecard{grid-template-columns:1fr}.scorecard{text-align:center}.actions{align-items:stretch}.actions button{width:100%}.voice{width:100%}.voice button{flex:1}}
+</style>
+</head>
+<body>
+<main>
+<div class="brand"><div class="brandmark"><span class="dot"></span>NISHA ENGLISH LAB</div><span class="badge">Speaking + Grammar Assessment</span></div>
+
+<section id="start" class="panel">
+<div class="hero"><div class="eyebrow">Your English, measured clearly</div><h1>Speak with Nisha.</h1>
+<p class="intro">Test your grammar and real-world spoken English through a short, guided assessment. Hear each prompt, answer naturally, and receive a score with question-by-question feedback.</p></div>
+<fieldset><legend>Choose your assessment paths</legend><div class="paths">
+<label><input type="checkbox" value="grammar" checked> Grammar</label>
+<label><input type="checkbox" value="speaking" checked> Speaking</label>
+</div></fieldset>
+<button id="begin" class="startbtn">Begin assessment <span>→</span></button>
+<p id="startError" class="error" aria-live="polite"></p>
+<p class="fineprint">Tip: use headphones and a quiet place for the best speaking experience.</p>
+</section>
+
+<section id="assessment" class="panel" hidden>
+<div class="topline"><div id="progress" class="progress"></div><span class="badge">Assessment in progress</span></div>
+<div class="progressbar"><div id="progressFill" class="progressfill"></div></div>
+<div id="question" class="question"></div><div id="questionMeta" class="questionMeta"></div><div id="answerArea"></div>
+<div class="actions"><div class="voice"><button id="listen" class="secondary" type="button">🔊 Hear Nisha</button><span id="voiceStatus">Voice answers are optional; typing is always available.</span></div><button id="next" type="button">Save &amp; continue →</button></div>
+</section>
+
+<section id="grading" class="panel" hidden><div class="spinner"></div><p class="loading" id="gradingText">Nisha is comparing your answers with the model answers...</p></section>
+
+<section id="results" class="panel" hidden>
+<div class="eyebrow">Assessment complete</div><h2>Your English result</h2>
+<div class="scorecard"><div><div id="score" class="score">0%</div><div class="scorelabel">Overall score</div></div><div><div id="level" class="level"></div><p id="recommendation" class="intro"></p></div></div>
+<ul id="breakdown" class="breakdown"></ul><p id="redirectNotice" class="intro" hidden></p>
+<div class="resultActions"><a id="admission" class="button" href="#" target="_blank" rel="noopener">Continue to admission →</a><button id="retake" class="secondary" type="button">Retake assessment</button></div>
+<p class="fineprint">Your result is calculated from the selected assessment paths.</p>
+</section>
+</main>
+<script>
+const ADMISSIONS_URL='https://www.talktonic.com/admissions';
+const QUESTION_BANK=[
+{id:'g1',path:'grammar',type:'choice',prompt:'Choose the correct sentence.',options:["I have completed my graduation last year.","I completed my graduation last year.","I had complete my graduation last year.","I completing my graduation last year."],correct:1},
+{id:'g2',path:'grammar',type:'choice',prompt:'Choose the correct option: “She ___ working here since 2024.”',options:['is','was','has been','have been'],correct:2},
+{id:'g3',path:'grammar',type:'choice',prompt:'Choose the correct professional sentence.',options:["I am interested to work in your company.","I am interested in working for your company.","I am interesting in work for your company.","I interested in working your company."],correct:1},
+{id:'g4',path:'grammar',type:'choice',prompt:'Fill in the blank: “If I ___ more time, I would learn another programming language.”',options:['have','had','will have','am having'],correct:1},
+{id:'g5',path:'grammar',type:'choice',prompt:'Choose the correct sentence.',options:["The project was completed by our team on time.","The project completed by our team on time.","The project has complete by our team on time.","The project was completing by our team on time."],correct:0},
+{id:'g6',path:'grammar',type:'choice',prompt:'Choose the correct preposition: “I am responsible ___ maintaining the database.”',options:['to','at','for','with'],correct:2},
+{id:'g7',path:'grammar',type:'choice',prompt:'Choose the correct sentence.',options:["There is many opportunities in IT.","There are many opportunities in IT.","There have many opportunities in IT.","There be many opportunities in IT."],correct:1},
+{id:'g8',path:'grammar',type:'choice',prompt:'Choose the best professional response: “Could you explain the problem again?”',options:['Say it again.','What?','Certainly. Could you please clarify which part you would like me to explain?','I don’t know.'],correct:2},
+{id:'g9',path:'grammar',type:'choice',prompt:'Choose the word that best completes the sentence: “I look forward to ___ from you.”',options:['hear','hearing','heard','be hearing'],correct:1},
+{id:'g10',path:'grammar',type:'choice',prompt:'Identify the correct sentence.',options:["He don't have experience in Python.","He doesn't has experience in Python.","He doesn't have experience in Python.","He not have experience in Python."],correct:2},
+
+{id:'s1',path:'speaking',type:'describe',prompt:'Tell me about yourself in 45–60 seconds. Include your education, key technical skills, and the type of role you are looking for.',idealAnswer:'A confident, structured introduction covering education, relevant skills, strengths or training, and a clear target role. The answer should be understandable, relevant, and professionally phrased.'},
+{id:'s2',path:'speaking',type:'describe',prompt:'Explain one project you have worked on. What was the project, what technologies did you use, and what did you personally contribute?',idealAnswer:'Clearly explains the project purpose, technologies, personal responsibilities, and outcome. Uses past tense appropriately and demonstrates ownership rather than only describing the team.'},
+{id:'s3',path:'speaking',type:'describe',prompt:'Why should a company hire you for an entry-level role?',idealAnswer:'Gives two or three specific strengths supported by examples, connects those strengths to the role, and shows willingness to learn and contribute without making unrealistic claims.'},
+{id:'s4',path:'speaking',type:'describe',prompt:'Describe a difficult problem you faced while learning or working on a project. How did you solve it?',idealAnswer:'Uses a clear situation-problem-action-result structure, explains the solution logically, and reflects on what was learned. Maintains consistent past tense.'},
+{id:'s5',path:'speaking',type:'describe',prompt:'What are your biggest strengths and one area you are currently improving?',idealAnswer:'Names relevant strengths with brief evidence and describes one genuine development area with a practical improvement strategy. The response should sound self-aware and professional.'},
+{id:'s6',path:'speaking',type:'describe',prompt:'Where do you see yourself professionally in the next three to five years?',idealAnswer:'Provides a realistic career direction, explains desired growth in skills and responsibility, and connects the goal to continuous learning and contribution.'},
+{id:'s7',path:'speaking',type:'describe',prompt:'Imagine your manager gives you a task with a deadline you think is difficult to meet. What would you say and do?',idealAnswer:'Shows professional communication: clarify requirements, estimate effort, prioritize, communicate risks early, propose options, and agree on a realistic deadline.'},
+{id:'s8',path:'speaking',type:'describe',prompt:'Give a one-minute answer to this workplace situation: A customer is unhappy because a problem has not been fixed. How would you respond?',idealAnswer:'Responds politely and empathetically, acknowledges the concern, explains the next action without blaming others, provides a realistic update, and confirms follow-up.'}
+];
+let selectedPaths=[],questions=[],current=0,answers={};
+const $=id=>document.getElementById(id);
+const start=$('start'),assessment=$('assessment'),grading=$('grading'),results=$('results');
+function speak(text){if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.92;u.pitch=1;speechSynthesis.speak(u)}}
+function renderQuestion(){
+ const item=questions[current];$('progress').textContent=`Question ${current+1} of ${questions.length} · ${item.path==='grammar'?'Grammar':'Speaking'}`;
+ $('progressFill').style.width=`${((current+1)/questions.length)*100}%`;$('question').textContent=item.prompt;
+ $('questionMeta').textContent=item.type==='choice'?'Select one option.':'Speak naturally or type your answer. Speaking responses are evaluated for relevance, grammar, clarity, and structure.';
+ const levelLabel=current<3?'Foundation':current<7?'Workplace English':'Interview Challenge';
+ $('questionMeta').textContent += ` · ${levelLabel}`;
+ const area=$('answerArea');area.innerHTML='';
+ if(item.type==='choice'){
+   const options=document.createElement('div');options.className='options';
+   item.options.forEach((option,index)=>{const label=document.createElement('label');label.innerHTML=`<input type="radio" name="answer" value="${index}" ${answers[item.id]===index?'checked':''}> ${option}`;options.append(label)});area.append(options);
+ }else{
+   const ta=document.createElement('textarea');ta.id='spokenAnswer';ta.placeholder='Type your answer, or use the microphone...';ta.value=answers[item.id]||'';area.append(ta);
+ }
+ $('voiceStatus').textContent='Voice answers are optional; typing is always available.';speak(item.prompt);
+}
+$('begin').onclick=()=>{selectedPaths=[...document.querySelectorAll('.paths input:checked')].map(i=>i.value);if(!selectedPaths.length){$('startError').textContent='Choose at least one path.';return}questions=QUESTION_BANK.filter(q=>selectedPaths.includes(q.path));current=0;answers={};start.hidden=true;results.hidden=true;assessment.hidden=false;renderQuestion()};
+$('next').onclick=async()=>{const item=questions[current],choice=document.querySelector('input[name="answer"]:checked');answers[item.id]=item.type==='choice'?(choice?Number(choice.value):null):($('spokenAnswer')?.value||'').trim();if(current<questions.length-1){current++;renderQuestion();return}assessment.hidden=true;grading.hidden=false;await scoreAssessment()};
+function escapeHTML(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function gradeSpeakingAnswers(items){
+ const payload=items.map(q=>({id:q.id,question:q.prompt,idealAnswerGuidance:q.idealAnswer,studentAnswer:(answers[q.id]||'').trim()||'(no answer given)'}));
+ const systemPrompt=`You are an English-speaking assessment grader. For each question, compare the student's answer against the guidance for an ideal answer. Score each answer from 0 to 100 based on relevance, grammatical correctness, and clarity/coherence. Empty or irrelevant answers should score near 0. Respond ONLY valid JSON in this exact shape: {"results":[{"id":"<question id>","score":<integer 0-100>,"feedback":"<one short sentence of feedback>"}]}`;
+ try{
+  const response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:systemPrompt,messages:[{role:'user',content:JSON.stringify(payload)}]})});
+  if(!response.ok)throw new Error('API request failed');const data=await response.json();const text=data.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();const parsed=JSON.parse(text);
+  return parsed.results.map(r=>{const q=items.find(x=>x.id===r.id);return{id:r.id,prompt:q?q.prompt:r.id,score:Math.max(0,Math.min(100,Number(r.score)||0)),yourAnswer:(answers[r.id]||'').trim()||'(no answer given)',correctAnswer:q?q.idealAnswer:'',feedback:r.feedback||''}});
+ }catch(err){return items.map(q=>{const a=(answers[q.id]||'').toLowerCase(),iw=new Set(q.idealAnswer.toLowerCase().match(/[a-z]+/g)||[]),sw=new Set(a.match(/[a-z]+/g)||[]),overlap=[...sw].filter(w=>iw.has(w)).length;return{id:q.id,prompt:q.prompt,score:sw.size?Math.min(100,Math.round(overlap/Math.max(iw.size,1)*150)):0,yourAnswer:a.trim()||'(no answer given)',correctAnswer:q.idealAnswer,feedback:'Scored locally because AI grading was unavailable.'}})}
+}
+async function scoreAssessment(){
+ const grammar=questions.filter(q=>q.type==='choice').map(q=>{const given=answers[q.id],correct=given===q.correct;return{id:q.id,prompt:q.prompt,score:correct?100:0,yourAnswer:given==null?'(no answer given)':q.options[given],correctAnswer:q.options[q.correct],feedback:correct?'Correct.':'Review this grammar point and try again.'}});
+ const speakingItems=questions.filter(q=>q.type==='describe');let speaking=[];
+ if(speakingItems.length){$('gradingText').textContent='Nisha is comparing your spoken answers with model answers...';speaking=await gradeSpeakingAnswers(speakingItems)}
+ const all=[...grammar,...speaking],overall=Math.round(all.reduce((s,r)=>s+r.score,0)/Math.max(all.length,1));grading.hidden=true;results.hidden=false;$('score').textContent=`${overall}%`;
+ const level=overall>=90?'Advanced':overall>=75?'Upper-intermediate':overall>=60?'Intermediate':overall>=40?'Developing':'Beginner';$('level').textContent=level;
+ $('recommendation').textContent=overall>=75?'Strong foundation. Focus on fluency, precision, and confident real-world communication.':'You have a clear starting point. Focus on grammar accuracy, vocabulary, fluency, and regular speaking practice to build confidence.';
+ const breakdown=$('breakdown');breakdown.innerHTML='';all.forEach(r=>{const li=document.createElement('li');li.innerHTML=`<div class="qtext">${escapeHTML(r.prompt)}</div><div class="qscore">${escapeHTML(r.score)}/100</div><div class="qfeedback"><strong>Your answer:</strong> ${escapeHTML(r.yourAnswer)}</div><div class="qfeedback"><strong>Model guidance:</strong> ${escapeHTML(r.correctAnswer)}</div><div class="qfeedback">${escapeHTML(r.feedback)}</div>`;breakdown.append(li)});
+ const url=`${ADMISSIONS_URL}?course=spoken-english&score=${overall}`;$('admission').href=url;
+ speak(`Your English assessment score is ${overall} percent. Your level is ${level}.`);
+}
+$('retake').onclick=()=>{results.hidden=true;start.hidden=false;window.scrollTo({top:0,behavior:'smooth'})};
+$('listen').onclick=()=>{if(questions[current]){speak(questions[current].prompt);if(questions[current].type==='describe'&&('SpeechRecognition'in window||'webkitSpeechRecognition'in window)){const R=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new R();rec.lang='en-US';rec.onstart=()=>$('voiceStatus').textContent='Listening…';rec.onresult=e=>{$('spokenAnswer').value=e.results[0][0].transcript;$('voiceStatus').textContent='Answer captured.'};rec.onerror=()=>$('voiceStatus').textContent='Microphone unavailable. Type your answer instead.';try{rec.start()}catch(e){}}}};
+</script>
+</body></html>
